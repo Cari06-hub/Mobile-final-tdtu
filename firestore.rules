@@ -1,0 +1,87 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    // ==================== HELPER FUNCTIONS ====================
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOfficer() {
+      return signedIn() &&
+        get(/databases/$(db)/documents/users/$(request.auth.uid)).data.role == 'officer';
+    }
+
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+
+    // ==================== USERS ====================
+    // Khách chỉ đọc/sửa của mình; sửa chỉ được 3 trường; officer toàn quyền
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isOfficer();
+      allow update: if isOwner(uid) &&
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['phone', 'email', 'address']);
+      allow create, update: if isOfficer();
+      allow delete: if false;
+    }
+
+    // ==================== KYC ====================
+    // Chỉ officer ghi; khách chỉ đọc kyc của chính mình
+    match /kyc/{uid} {
+      allow read: if isOwner(uid) || isOfficer();
+      allow write: if isOfficer();
+    }
+
+    // ==================== RATES (lãi suất tiết kiệm) ====================
+    // Mọi user đã đăng nhập đọc; chỉ officer ghi
+    match /rates/{productId} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    // ==================== PROFILE REQUESTS ====================
+    // Khách tạo yêu cầu của mình; officer đọc tất cả và duyệt/từ chối
+    match /profileRequests/{reqId} {
+      allow read: if isOfficer() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow create: if signedIn() &&
+        request.resource.data.uid == request.auth.uid &&
+        request.resource.data.status == 'PENDING';
+      allow update: if isOfficer() &&
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['status', 'reason', 'reviewedBy', 'reviewedAt']);
+      allow delete: if false;
+    }
+
+    // ==================== CONFIG ====================
+    // Chỉ đọc (admin set thủ công qua console)
+    match /config/{docId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    // ==================== ACCOUNTS — sẽ được bổ sung bởi AB-R ở D2 ====================
+    // Tạm thời: officer tạo; chủ tài khoản đọc
+    match /accounts/{accId} {
+      allow read: if isOfficer() || (signedIn() && resource.data.ownerId == request.auth.uid);
+      allow create: if isOfficer();
+      // UPDATE sẽ được lock chặt hơn trong AB-R (D2-D3)
+      allow update: if isOfficer();
+      allow delete: if false;
+    }
+
+    // ==================== TRANSACTIONS — sẽ được bổ sung bởi AB-R ở D2 ====================
+    match /transactions/{txId} {
+      allow read: if signedIn() &&
+        (request.auth.uid in resource.data.participants || isOfficer());
+      // CREATE sẽ được lock trong AB-R
+      allow create: if signedIn() &&
+        request.resource.data.createdBy == request.auth.uid &&
+        request.resource.data.amount is int &&
+        request.resource.data.amount > 0;
+      allow update, delete: if false;
+    }
+
+  }
+}

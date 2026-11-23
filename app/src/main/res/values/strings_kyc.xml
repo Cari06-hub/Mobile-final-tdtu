@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="kyc_title_cccd">Chụp ảnh CCCD</string>
+    <string name="kyc_cccd_instruction">Đặt mặt trước CCCD vào khung và chụp ảnh</string>
+    <string name="kyc_title_face_enroll">Đăng ký khuôn mặt</string>
+    <string name="kyc_face_enroll_instruction">Nhìn thẳng vào camera. Hệ thống sẽ chụp tự động khi phát hiện khuôn mặt rõ ràng.</string>
+    <string name="kyc_title_face_verify">Xác thực khuôn mặt</string>
+    <string name="kyc_face_verify_instruction">Nhìn thẳng vào camera để xác thực</string>
+    <string name="kyc_btn_capture">Chụp ảnh</string>
+    <string name="kyc_btn_retry">Chụp lại</string>
+    <string name="kyc_btn_confirm">Xác nhận</string>
+    <string name="kyc_success">Xác thực thành công!</string>
+    <string name="kyc_failed">Xác thực thất bại. Vui lòng thử lại.</string>
+    <string name="kyc_pending">Đang chờ xác thực</string>
+    <string name="kyc_liveness_instruction">Hãy chớp mắt một lần để xác nhận sự hiện diện</string>
+    <string name="kyc_error_no_face">Không phát hiện khuôn mặt</string>
+    <string name="kyc_error_match_failed">Khuôn mặt không khớp với hồ sơ</string>
+    <string name="kyc_error_cccd_read_failed">Không đọc được thông tin CCCD. Hãy chụp lại rõ hơn.</string>
+</resources>

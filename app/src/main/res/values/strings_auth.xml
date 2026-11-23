@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_login_title">Đăng nhập</string>
+    <string name="auth_login_subtitle">Chào mừng trở lại!</string>
+    <string name="auth_email_hint">Email</string>
+    <string name="auth_password_hint">Mật khẩu</string>
+    <string name="auth_btn_login">Đăng nhập</string>
+    <string name="auth_btn_register">Tạo tài khoản</string>
+    <string name="auth_forgot_password">Quên mật khẩu?</string>
+    <string name="auth_register_title">Tạo tài khoản</string>
+    <string name="auth_fullname_hint">Họ và tên</string>
+    <string name="auth_phone_hint">Số điện thoại</string>
+    <string name="auth_cccd_hint">Số CCCD</string>
+    <string name="auth_dob_hint">Ngày sinh (DD/MM/YYYY)</string>
+    <string name="auth_btn_send_reset">Gửi email đặt lại mật khẩu</string>
+    <string name="auth_forgot_title">Quên mật khẩu</string>
+    <string name="auth_forgot_subtitle">Nhập email để nhận link đặt lại mật khẩu</string>
+    <string name="auth_already_have_account">Đã có tài khoản? Đăng nhập</string>
+    <string name="auth_no_account">Chưa có tài khoản? Đăng ký</string>
+    <string name="auth_error_email_empty">Vui lòng nhập email</string>
+    <string name="auth_error_email_invalid">Email không hợp lệ</string>
+    <string name="auth_error_password_empty">Vui lòng nhập mật khẩu</string>
+    <string name="auth_error_password_short">Mật khẩu phải có ít nhất 8 ký tự</string>
+    <string name="auth_error_name_empty">Vui lòng nhập họ tên</string>
+    <string name="auth_error_cccd_invalid">CCCD phải có 12 chữ số</string>
+    <string name="auth_success_reset_sent">Email đặt lại mật khẩu đã được gửi</string>
+    <string name="auth_error_wrong_credentials">Email hoặc mật khẩu không đúng</string>
+</resources>

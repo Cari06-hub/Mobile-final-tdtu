@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_kyc"
+    app:startDestination="@id/kycCccdFragment">
+
+    <fragment
+        android:id="@+id/kycCccdFragment"
+        android:name="com.tdtu.mobilebanking.kyc.ui.KycCccdFragment"
+        android:label="Chụp CCCD"
+        tools:layout="@layout/fragment_kyc_cccd">
+        <action
+            android:id="@+id/action_cccd_to_face_enroll"
+            app:destination="@id/kycFaceEnrollFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/kycFaceEnrollFragment"
+        android:name="com.tdtu.mobilebanking.kyc.ui.KycFaceEnrollFragment"
+        android:label="Đăng ký khuôn mặt"
+        tools:layout="@layout/fragment_kyc_face_enroll">
+        <action
+            android:id="@+id/action_face_enroll_to_result"
+            app:destination="@id/kycResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/kycFaceVerifyFragment"
+        android:name="com.tdtu.mobilebanking.kyc.ui.KycFaceVerifyFragment"
+        android:label="Xác thực khuôn mặt"
+        tools:layout="@layout/fragment_kyc_face_verify">
+        <action
+            android:id="@+id/action_face_verify_to_result"
+            app:destination="@id/kycResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/kycResultFragment"
+        android:name="com.tdtu.mobilebanking.kyc.ui.KycResultFragment"
+        android:label="Kết quả eKYC"
+        tools:layout="@layout/fragment_kyc_result" />
+
+</navigation>

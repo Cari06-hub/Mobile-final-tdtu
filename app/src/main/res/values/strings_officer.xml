@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="officer_home_title">Officer Dashboard</string>
+    <string name="officer_create_customer">Tạo khách hàng mới</string>
+    <string name="officer_search_customer">Tìm kiếm khách hàng</string>
+    <string name="officer_open_account">Mở tài khoản</string>
+    <string name="officer_profile_requests">Yêu cầu sửa hồ sơ</string>
+    <string name="officer_rate_management">Quản lý lãi suất</string>
+    <string name="officer_account_checking">Tài khoản Thanh toán</string>
+    <string name="officer_account_saving">Tài khoản Tiết kiệm</string>
+    <string name="officer_account_mortgage">Tài khoản Vay thế chấp</string>
+    <string name="officer_daily_limit_hint">Hạn mức ngày (VND)</string>
+    <string name="officer_product_id_hint">Sản phẩm tiết kiệm</string>
+    <string name="officer_term_months_hint">Kỳ hạn (tháng)</string>
+    <string name="officer_principal_hint">Số tiền gốc (VND)</string>
+    <string name="officer_annual_rate_hint">Lãi suất năm (%)</string>
+    <string name="officer_frequency_hint">Tần suất trả</string>
+    <string name="officer_start_date_hint">Ngày bắt đầu</string>
+    <string name="officer_btn_approve">Duyệt</string>
+    <string name="officer_btn_reject">Từ chối</string>
+</resources>
