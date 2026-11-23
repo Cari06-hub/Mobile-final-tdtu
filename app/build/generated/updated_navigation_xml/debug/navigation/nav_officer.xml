@@ -1,0 +1,67 @@
+<navigation
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/nav_officer"
+app:startDestination="@id/officerHomeFragment" >
+<fragment
+    android:id="@+id/officerHomeFragment"
+    android:name="com.tdtu.mobilebanking.officer.ui.OfficerHomeFragment"
+    android:label="Officer Dashboard"
+    tools:layout="@layout/fragment_officer_home" >
+
+    <action
+        android:id="@+id/action_officer_home_to_create_customer"
+        app:destination="@id/createCustomerFragment" />
+    <action
+        android:id="@+id/action_officer_home_to_customer_detail"
+        app:destination="@id/customerDetailFragment" />
+    <action
+        android:id="@+id/action_officer_home_to_open_account"
+        app:destination="@id/openAccountFragment" />
+    <action
+        android:id="@+id/action_officer_home_to_profile_requests"
+        app:destination="@id/profileRequestsFragment" />
+    <action
+        android:id="@+id/action_officer_home_to_rate_management"
+        app:destination="@id/rateManagementFragment" />
+
+</fragment>
+<fragment
+    android:id="@+id/createCustomerFragment"
+    android:name="com.tdtu.mobilebanking.officer.ui.CreateCustomerFragment"
+    android:label="Tạo khách hàng"
+    tools:layout="@layout/fragment_create_customer" />
+<fragment
+    android:id="@+id/customerDetailFragment"
+    android:name="com.tdtu.mobilebanking.officer.ui.CustomerDetailFragment"
+    android:label="Chi tiết khách hàng"
+    tools:layout="@layout/fragment_customer_detail" >
+
+    <argument
+        android:name="customerId"
+        app:argType="string" />
+
+</fragment>
+<fragment
+    android:id="@+id/openAccountFragment"
+    android:name="com.tdtu.mobilebanking.officer.ui.OpenAccountFragment"
+    android:label="Mở tài khoản"
+    tools:layout="@layout/fragment_open_account" >
+
+    <argument
+        android:name="customerId"
+        app:argType="string" />
+
+</fragment>
+<fragment
+    android:id="@+id/profileRequestsFragment"
+    android:name="com.tdtu.mobilebanking.officer.ui.ProfileRequestsFragment"
+    android:label="Yêu cầu sửa hồ sơ"
+    tools:layout="@layout/fragment_profile_requests" />
+<fragment
+    android:id="@+id/rateManagementFragment"
+    android:name="com.tdtu.mobilebanking.officer.ui.RateManagementFragment"
+    android:label="Quản lý lãi suất"
+    tools:layout="@layout/fragment_rate_management" />
+</navigation>

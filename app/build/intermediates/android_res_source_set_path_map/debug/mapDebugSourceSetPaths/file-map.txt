@@ -1,0 +1,9 @@
+com.tdtu.mobilebanking.app-pngs-0 D:\BAI_TAP_TREN_LOP\Mobile-final\Mobile-final-tdtu\app\build\generated\res\pngs\debug
+com.tdtu.mobilebanking.app-res-1 D:\BAI_TAP_TREN_LOP\Mobile-final\Mobile-final-tdtu\app\build\generated\res\processDebugGoogleServices
+com.tdtu.mobilebanking.app-updated_navigation_xml-2 D:\BAI_TAP_TREN_LOP\Mobile-final\Mobile-final-tdtu\app\build\generated\updated_navigation_xml\debug
+com.tdtu.mobilebanking.app-packageDebugResources-3 D:\BAI_TAP_TREN_LOP\Mobile-final\Mobile-final-tdtu\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.tdtu.mobilebanking.app-packageDebugResources-4 D:\BAI_TAP_TREN_LOP\Mobile-final\Mobile-final-tdtu\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.tdtu.mobilebanking.app-debug-5 D:\BAI_TAP_TREN_LOP\Mobile-final\Mobile-final-tdtu\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.tdtu.mobilebanking.app-debug-6 D:\BAI_TAP_TREN_LOP\Mobile-final\Mobile-final-tdtu\app\src\debug\res
+com.tdtu.mobilebanking.app-main-7 D:\BAI_TAP_TREN_LOP\Mobile-final\Mobile-final-tdtu\app\src\main\res
+gradleHome-0 C:\Users\ADMIN\.gradle

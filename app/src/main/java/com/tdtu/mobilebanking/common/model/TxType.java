@@ -9,5 +9,6 @@ public enum TxType {
     TOPUP_PHONE,
     CHECKOUT,
     SAVING_DEPOSIT,
-    MORTGAGE_PAYMENT
+    MORTGAGE_PAYMENT,
+    COUNTER_DEPOSIT   // Officer nạp tiền tại quầy cho khách
 }

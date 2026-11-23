@@ -167,3 +167,135 @@ Mô tả: Config hệ thống (set thủ công qua console, không sửa code).
 | rates/{productId} | Tất cả | Không | Tất cả | Tất cả |
 | profileRequests/{reqId} | Chỉ của mình | Tạo mới | Tất cả | Duyệt/từ chối |
 | config/{docId} | Đọc | Không | Đọc | Không |
+
+
+---
+
+## Cập nhật D2 — Collection mới
+
+### `accountDirectory/{accountNumber}`
+
+Mô tả: Tra cứu số tài khoản khi chuyển tiền. Khách chỉ tra đúng 1 số (get), không list được.
+
+| Field | Type | Mô tả |
+|-------|------|--------|
+| accountNumber | string | = document ID, 12 chữ số |
+| accountId | string | Ref: accounts/{accountId} |
+| ownerId | string | UID chủ tài khoản |
+| ownerName | string | Tên chủ (phi chuẩn hóa, để hiện "Gửi đến: Nguyễn Văn A") |
+| type | string | CHECKING \| SAVING \| MORTGAGE |
+| status | string | ACTIVE \| LOCKED \| CLOSED |
+
+### Trường mới trong `accounts/{accountId}`
+
+| Field | Type | Mô tả |
+|-------|------|--------|
+| accountNumber | string | 12 chữ số, unique, ref sang accountDirectory |
+| currency | string | "VND" (cố định) |
+
+### Loại giao dịch mới trong TxType
+
+| Loại | Mô tả |
+|------|--------|
+| COUNTER_DEPOSIT | Officer nạp tiền tại quầy cho khách |
+
+---
+
+## ERD (Mermaid)
+
+```mermaid
+erDiagram
+    USER ||--o{ ACCOUNT : owns
+    USER ||--o{ ACCOUNT : opens
+    USER |o--o{ USER : "officer creates"
+    USER ||--o| KYC_PROFILE : has
+    ACCOUNT ||--o| CHECKING_ACCOUNT : is-a
+    ACCOUNT ||--o| SAVING_ACCOUNT : is-a
+    ACCOUNT ||--o| MORTGAGE_ACCOUNT : is-a
+    SAVING_PRODUCT ||--o{ SAVING_ACCOUNT : "applies rate"
+    ACCOUNT ||--|| ACCOUNT_DIRECTORY : "public lookup"
+    ACCOUNT |o--o{ TRANSACTION : "debited"
+    ACCOUNT |o--o{ TRANSACTION : "credited"
+    USER ||--o{ TRANSACTION : creates
+
+    USER {
+        string uid PK
+        string fullName
+        string email
+        string phone
+        string cccd
+        string dob
+        string address
+        string role "customer or officer"
+        string kycStatus "PENDING VERIFIED REJECTED"
+        string status "ACTIVE LOCKED"
+        boolean mustChangePassword
+        string createdBy FK
+        timestamp createdAt
+    }
+    ACCOUNT {
+        string accountId PK
+        string accountNumber UK
+        string ownerId FK
+        string type "CHECKING SAVING MORTGAGE"
+        long balance
+        string status
+        string lastTxId FK
+        string createdBy FK
+        timestamp createdAt
+    }
+    CHECKING_ACCOUNT {
+        string accountId PK
+        long dailyLimit
+    }
+    SAVING_ACCOUNT {
+        string accountId PK
+        string productId FK
+        long principal
+        int termMonths
+        timestamp openedAt
+    }
+    MORTGAGE_ACCOUNT {
+        string accountId PK
+        long principal
+        double annualRate
+        int termMonths
+        string frequency "MONTHLY BIWEEKLY"
+        timestamp startDate
+        long outstanding
+    }
+    SAVING_PRODUCT {
+        string productId PK
+        string productName
+        int termMonths
+        double annualRate
+        long minDeposit
+        timestamp updatedAt
+    }
+    TRANSACTION {
+        string txId PK
+        string type
+        string fromAccountId FK
+        string toAccountId FK
+        long amount
+        string status
+        string createdBy FK
+        string participants "array"
+        timestamp createdAt
+    }
+    KYC_PROFILE {
+        string uid PK
+        string embedding
+        string photoBase64
+        string enrolledBy FK
+        timestamp enrolledAt
+    }
+    ACCOUNT_DIRECTORY {
+        string accountNumber PK
+        string accountId FK
+        string ownerId FK
+        string ownerName
+        string type
+        string status
+    }
+```

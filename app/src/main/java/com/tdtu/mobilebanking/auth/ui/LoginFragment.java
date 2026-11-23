@@ -29,15 +29,20 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
+        // Auto-login nếu đã có session
+        if (viewModel.isLoggedIn()) {
+            fetchRoleAndRoute();
+            return;
+        }
+
         setupClickListeners();
         observeViewModel();
     }
 
     private void setupClickListeners() {
         binding.btnLogin.setOnClickListener(v -> {
-            String email = binding.etEmail.getText().toString().trim();
+            String email    = binding.etEmail.getText().toString().trim();
             String password = binding.etPassword.getText().toString().trim();
-
             if (!validateInput(email, password)) return;
             viewModel.login(email, password);
         });
@@ -53,21 +58,15 @@ public class LoginFragment extends Fragment {
 
     private boolean validateInput(String email, String password) {
         boolean valid = true;
-        if (email.isEmpty()) {
-            binding.tilEmail.setError(getString(R.string.auth_error_email_empty));
-            valid = false;
-        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.tilEmail.setError(getString(R.string.auth_error_email_invalid));
             valid = false;
-        } else {
-            binding.tilEmail.setError(null);
-        }
+        } else binding.tilEmail.setError(null);
+
         if (password.isEmpty()) {
             binding.tilPassword.setError(getString(R.string.auth_error_password_empty));
             valid = false;
-        } else {
-            binding.tilPassword.setError(null);
-        }
+        } else binding.tilPassword.setError(null);
         return valid;
     }
 
@@ -81,26 +80,43 @@ public class LoginFragment extends Fragment {
             if (result == null) return;
             switch (result.type) {
                 case SUCCESS:
-                    if (result.user.isOfficer()) {
-                        Navigation.findNavController(requireView())
-                                .navigate(R.id.action_login_to_officer_home);
-                    } else {
-                        Navigation.findNavController(requireView())
-                                .navigate(R.id.action_login_to_home);
-                    }
+                    routeByRole(result.user.role);
                     break;
                 case FAILURE:
                     Snackbar.make(requireView(),
-                            getString(R.string.auth_error_wrong_credentials),
+                            result.error != null ? result.error : getString(R.string.auth_error_wrong_credentials),
                             Snackbar.LENGTH_LONG).show();
                     break;
             }
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    /** Đọc role từ Firestore rồi điều hướng (dùng khi auto-login). */
+    private void fetchRoleAndRoute() {
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.btnLogin.setEnabled(false);
+        viewModel.fetchCurrentUserRole(role -> {
+            if (!isAdded()) return;
+            requireActivity().runOnUiThread(() -> {
+                binding.progressBar.setVisibility(View.GONE);
+                binding.btnLogin.setEnabled(true);
+                if (role != null) routeByRole(role);
+            });
+        });
     }
+
+    private void routeByRole(String role) {
+        if (!isAdded()) return;
+        if ("officer".equals(role)) {
+            Navigation.findNavController(requireView())
+                    .navigate(R.id.action_login_to_officer_home);
+        } else {
+            // customer → D2: navigate to customer home (stub hiện tại)
+            Navigation.findNavController(requireView())
+                    .navigate(R.id.action_login_to_home);
+        }
+    }
+
+    @Override
+    public void onDestroyView() { super.onDestroyView(); binding = null; }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_root"
+    app:startDestination="@id/nav_auth">
+
+    <!-- Auth graph — owned by Dev A -->
+    <include app:graph="@navigation/nav_auth" />
+
+    <!-- Officer graph — owned by Dev A -->
+    <include app:graph="@navigation/nav_officer" />
+
+    <!-- KYC graph — owned by Dev A -->
+    <include app:graph="@navigation/nav_kyc" />
+
+    <!-- Account graph — owned by Dev B -->
+    <!-- <include app:graph="@navigation/nav_account" /> -->
+
+    <!-- Payment graph — owned by Dev B -->
+    <!-- <include app:graph="@navigation/nav_payment" /> -->
+
+    <!-- Utility graph — owned by Dev C -->
+    <!-- <include app:graph="@navigation/nav_utility" /> -->
+
+    <!-- Map graph — owned by Dev C -->
+    <!-- <include app:graph="@navigation/nav_map" /> -->
+
+    <!-- Chatbot graph — owned by Dev C -->
+    <!-- <include app:graph="@navigation/nav_chatbot" /> -->
+
+</navigation>

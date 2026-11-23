@@ -1,0 +1,26 @@
+[
+  {
+    "name": "nav_auth",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  },
+  {
+    "name": "nav_kyc",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  },
+  {
+    "name": "nav_officer",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  },
+  {
+    "name": "nav_root",
+    "navigationXmlIds": [
+      "nav_auth",
+      "nav_officer",
+      "nav_kyc"
+    ],
+    "deepLinks": []
+  }
+]
