@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_cccd_to_face_enroll"
             app:destination="@id/kycFaceEnrollFragment" />
+        <action
+            android:id="@+id/action_kycCccd_to_kycResult"
+            app:destination="@id/kycResultFragment" />
     </fragment>
 
     <fragment

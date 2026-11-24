@@ -57,7 +57,21 @@
         android:id="@+id/profileRequestsFragment"
         android:name="com.tdtu.mobilebanking.officer.ui.ProfileRequestsFragment"
         android:label="Yêu cầu sửa hồ sơ"
-        tools:layout="@layout/fragment_profile_requests" />
+        tools:layout="@layout/fragment_profile_requests">
+        <action
+            android:id="@+id/action_profileRequests_to_profileRequestDetail"
+            app:destination="@id/profileRequestDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileRequestDetailFragment"
+        android:name="com.tdtu.mobilebanking.officer.ui.ProfileRequestDetailFragment"
+        android:label="Chi tiết yêu cầu"
+        tools:layout="@layout/fragment_profile_request_detail">
+        <argument
+            android:name="requestId"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/rateManagementFragment"

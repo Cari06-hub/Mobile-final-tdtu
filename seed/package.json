@@ -1,0 +1,11 @@
+{
+  "name": "mobile-banking-seed",
+  "version": "1.0.0",
+  "description": "Seed script for Firebase demo data",
+  "scripts": {
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_account"
+    app:startDestination="@id/customerProfileFragment">
+
+    <!-- A5: Customer profile (start destination until Dev B adds customer home) -->
+    <fragment
+        android:id="@+id/customerProfileFragment"
+        android:name="com.tdtu.mobilebanking.profile.ui.CustomerProfileFragment"
+        android:label="Hồ sơ cá nhân"
+        tools:layout="@layout/fragment_customer_profile">
+        <action
+            android:id="@+id/action_profile_to_changePassword"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_profile_to_changePin"
+            app:destination="@id/changePinFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.tdtu.mobilebanking.profile.ui.ChangePasswordFragment"
+        android:label="Đổi mật khẩu"
+        tools:layout="@layout/fragment_change_password" />
+
+    <fragment
+        android:id="@+id/changePinFragment"
+        android:name="com.tdtu.mobilebanking.profile.ui.ChangePinFragment"
+        android:label="Đổi PIN giao dịch"
+        tools:layout="@layout/fragment_change_pin" />
+
+</navigation>
