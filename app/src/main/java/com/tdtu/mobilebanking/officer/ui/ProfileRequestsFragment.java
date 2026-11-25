@@ -55,7 +55,7 @@ public class ProfileRequestsFragment extends Fragment {
         binding.progressBar.setVisibility(View.VISIBLE);
         db.collection("profileRequests")
                 .whereEqualTo("status", "PENDING")
-                .orderBy("createdAt", Query.Direction.ASCENDING)
+                .orderBy("createdAt", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener(query -> {
                     if (!isAdded()) return;

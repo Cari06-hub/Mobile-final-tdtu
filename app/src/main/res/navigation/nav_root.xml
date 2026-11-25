@@ -13,8 +13,8 @@
     <!-- KYC graph — owned by Dev A -->
     <include app:graph="@navigation/nav_kyc" />
 
-    <!-- Account graph — owned by Dev B -->
-    <!-- <include app:graph="@navigation/nav_account" /> -->
+    <!-- Account graph — owned by Dev A (profile) & Dev B (transactions) -->
+    <include app:graph="@navigation/nav_account" />
 
     <!-- Payment graph — owned by Dev B -->
     <!-- <include app:graph="@navigation/nav_payment" /> -->

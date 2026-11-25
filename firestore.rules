@@ -43,8 +43,9 @@ service cloud.firestore {
         && request.resource.data.kycStatus == 'PENDING';
       allow create: if isOfficer() && request.resource.data.role == 'customer';
       allow update: if signedIn() && request.auth.uid == uid
-        && changed().hasOnly(['phone', 'address', 'email', 'mustChangePassword'])
-        && (!('mustChangePassword' in changed()) || request.resource.data.mustChangePassword == false);
+        && changed().hasOnly(['phone', 'address', 'email', 'mustChangePassword', 'pinHash', 'kycStatus'])
+        && (!('mustChangePassword' in changed()) || request.resource.data.mustChangePassword == false)
+        && (!('kycStatus' in changed()) || request.resource.data.kycStatus in ['VERIFIED', 'PENDING']);
       allow update: if isOfficer() && request.resource.data.role == resource.data.role;
       allow delete: if false;
     }
@@ -105,7 +106,8 @@ service cloud.firestore {
     // ---------- kyc ----------
     match /kyc/{uid} {
       allow read: if signedIn() && (request.auth.uid == uid || isOfficer());
-      allow write: if isOfficer();
+      // Customer can create/update their own KYC doc (face enroll, CCCD scan)
+      allow write: if signedIn() && (request.auth.uid == uid || isOfficer());
     }
 
     // ---------- profileRequests ----------
