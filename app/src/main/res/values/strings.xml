@@ -2,4 +2,26 @@
 <resources>
     <string name="app_name">Mobile Banking</string>
     <string name="maps_api_key">YOUR_MAPS_API_KEY_HERE</string>
+
+    <!-- Officer Home extra -->
+    <string name="officer_customer_detail">Xem chi tiết khách</string>
+
+    <!-- KYC extra -->
+    <string name="kyc_title_enroll">Đăng ký khuôn mặt</string>
+    <string name="kyc_title_verify">Xác thực khuôn mặt</string>
+    <string name="kyc_guide_look_straight">Nhìn thẳng vào camera</string>
+    <string name="kyc_guide_blink">Chớp mắt một lần để xác nhận bạn là người thật</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Hồ sơ cá nhân</string>
+    <string name="profile_save">Lưu thay đổi</string>
+    <string name="profile_change_password">Đổi mật khẩu</string>
+    <string name="profile_change_pin">Đổi PIN giao dịch</string>
+
+    <!-- Common -->
+    <string name="btn_cancel">Hủy</string>
+    <string name="btn_confirm">Xác nhận</string>
+    <string name="btn_back">← Quay lại</string>
+    <string name="loading">Đang tải...</string>
+    <string name="error_generic">Đã xảy ra lỗi. Vui lòng thử lại.</string>
 </resources>

@@ -198,21 +198,20 @@ public class KycCccdFragment extends Fragment {
                     boolean nameMatch = scannedName == null // name optional
                             || normalize(scannedName).equals(normalize(doc.getString("fullName")));
 
-                    Bundle args = new Bundle();
                     if (cccdMatch && dobMatch && nameMatch) {
-                        // Update kycStatus to VERIFIED
-                        db.collection("users").document(uid)
-                                .update("kycStatus", "VERIFIED");
-                        args.putBoolean("success", true);
-                        args.putString("message", "Xác minh CCCD thành công! Tài khoản đã được xác thực.");
+                        // CCCD khớp → tiếp tục sang bước đăng ký khuôn mặt (sẽ set kycStatus = VERIFIED)
+                        Navigation.findNavController(view)
+                                .navigate(R.id.action_cccd_to_face_enroll);
                     } else {
+                        Bundle args = new Bundle();
                         args.putBoolean("success", false);
                         args.putString("message", "Thông tin CCCD không khớp hồ sơ. Vui lòng liên hệ nhân viên.");
+                        Navigation.findNavController(view)
+                                .navigate(R.id.action_kycCccd_to_kycResult, args);
                     }
-                    Navigation.findNavController(view)
-                            .navigate(R.id.action_kycCccd_to_kycResult, args);
                 })
                 .addOnFailureListener(e -> {
+                    if (!isAdded() || binding == null) return;
                     binding.progressBar.setVisibility(View.GONE);
                     binding.btnConfirm.setEnabled(true);
                     Toast.makeText(requireContext(), "Lỗi: " + e.getMessage(), Toast.LENGTH_LONG).show();

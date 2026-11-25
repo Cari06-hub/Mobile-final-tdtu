@@ -31,6 +31,13 @@ public class OpenAccountFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         helper = new OfficerKycHelper(requireContext());
 
+        if (getArguments() != null) {
+            String prefillUid = getArguments().getString("customerId", "");
+            if (!prefillUid.isEmpty()) {
+                binding.etCustomerId.setText(prefillUid);
+            }
+        }
+
         binding.btnBack.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
 
         // Chọn loại tài khoản

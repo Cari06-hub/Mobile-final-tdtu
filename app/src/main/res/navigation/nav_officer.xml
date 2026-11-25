@@ -41,6 +41,9 @@
         <argument
             android:name="customerId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_customer_detail_to_open_account"
+            app:destination="@id/openAccountFragment" />
     </fragment>
 
     <fragment
@@ -50,7 +53,8 @@
         tools:layout="@layout/fragment_open_account">
         <argument
             android:name="customerId"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
 
     <fragment

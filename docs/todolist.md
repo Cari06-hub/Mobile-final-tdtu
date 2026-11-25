@@ -52,42 +52,39 @@
 - [x] Bug 3: `nav_root.xml` — uncomment `nav_account` include
 - [x] Bug 4: `ProfileRequestsFragment.java` — đổi orderBy `ASCENDING` → `DESCENDING` khớp index
 
+### D4 — Code Features
+- [x] **A4 Part 2: `KycFaceVerifyFragment.java`** — CameraX + ML Kit + cosine similarity (≥ 0.75) + liveness chớp mắt (`DialogFragment` overlay + `nav_kyc`)
+- [x] **`RealKycVerifier.java`** + **`FaceEmbeddingHelper.java`** — implements `KycVerifier` & tách helper dùng chung với `KycFaceEnrollFragment`
+- [x] **`fragment_kyc_face_verify.xml`** + **`bg_face_oval.xml`** — layout màn xác thực khuôn mặt
+- [x] **A3: `CustomerDetailFragment.java`** — info khách, sửa thông tin khách, danh sách tài khoản, khóa/mở TK, chỉnh `dailyLimit`, mở thêm TK
+- [x] **`AccountListAdapter.java`** — RecyclerView adapter cho danh sách tài khoản
+- [x] **`fragment_customer_detail.xml`** + **`item_account_row.xml`** + **`bg_badge_rounded.xml`** — layouts
+- [x] **`OfficerHomeFragment.java`** + **`fragment_officer_home.xml`** — thêm search customer (email / CCCD / SĐT / họ tên)
+- [x] **`CustomerProfileFragment.java`** — thêm điều hướng eKYC, test `RealKycVerifier`, đăng xuất
+- [x] **Gradle compile test** — `./gradlew.bat compileDebugJavaWithJavac` pass
+- [x] **`signingConfigs.release`** — mở comment trong `app/build.gradle`
+- [x] **Merge `origin/Sang` (`06ae336`)** — untrack `app/build/` khỏi Git
+- [x] **Git commit D4 + push lên nhánh `Anh`**
+
 ---
 
 ## 🔧 Cần làm tiếp
 
-### D4 — Code Features (Ưu tiên cao)
-- [ ] **A4 Part 2: `KycFaceVerifyFragment.java`** — Replace stub
-  - Load `kyc/{uid}.embedding` từ Firestore
-  - CameraX → ML Kit FaceDetector → extract landmarks → pseudo-embedding
-  - Cosine similarity ≥ 0.75 → verified
-  - Liveness: eye-blink detection
-  - Implement `RealKycVerifier` (implements `KycVerifier`)
-  - Layout: `fragment_kyc_face_verify.xml`
-
-- [ ] **A3: `CustomerDetailFragment.java`** — Replace stub
-  - Load `users/{uid}` + `accounts` where `ownerId == uid`
-  - Hiển thị info + danh sách accounts
-  - Officer: lock/unlock account, navigate to open new account
-  - Thêm search customer (by CCCD/phone/name) vào `OfficerHomeFragment`
-  - Layout: `fragment_customer_detail.xml`
-
-### Build & Verification
-- [ ] **Gradle compile test** — `./gradlew compileDebugJavaWithJavac`
-- [ ] **Configure `signingConfigs.release`** trong `app/build.gradle` (line 23 commented)
-- [ ] **Deploy composite indexes** trên Firestore Console
-- [ ] **Git commit tất cả fixes + push to Anh**
+### Firebase Console
+- [ ] **Deploy Security Rules mới** lên Firebase Console (`firestore.rules` đã cập nhật ở D4)
+- [ ] **Deploy composite indexes** (`firestore.indexes.json`) trên Firebase Console
 
 ### D5–D6 — Hoàn thiện
-- [ ] Update `docs/diagrams.md` và `docs/firebase-schema.md` nếu có field mới
-- [ ] Build APK release — `./gradlew assembleRelease`
-- [ ] Test trên thiết bị thật — officer login, customer login, eKYC
+- [ ] Update `docs/diagrams.md` và `docs/firebase-schema.md` nếu có field mới (`pinHash`, `mustChangePassword`, v.v.)
+- [ ] Build APK release — `./gradlew.bat assembleRelease`
+- [ ] Test trên thiết bị thật — officer login, customer login, eKYC, sửa/mở/khóa TK
 - [ ] Viết phần báo cáo: Ch.3 (deployment), Ch.4 (UI screenshots)
 
 ### Blocked — Chờ Dev B (Sang)
 - [ ] Merge code Dev B vào nhánh Anh (Sang chưa push code mới!)
-- [ ] `ConfirmTransactionFragment` integration với `KycVerifier`
-- [ ] Test end-to-end chuyển tiền
+- [ ] `ConfirmTransactionFragment` integration với `RealKycVerifier`
+- [ ] Nối `CustomerHomeFragment` + `nav_account` / `nav_payment`
+- [ ] Test AB-R Rules giao dịch & end-to-end chuyển tiền
 - [ ] Nhắc Sang push code: `git push origin Sang`
 
 ### Blocked — Chờ Dev C (Hương)
@@ -103,7 +100,7 @@
 | D1   | Setup & Auth | ✅ Done |
 | D2   | Officer Module & Rules | ✅ Done |
 | D3   | Profile, eKYC, Diagrams | ✅ Done |
-| D4   | Bug fixes + KycVerify + CustomerDetail | 🔧 Bug fixes done, code features pending |
-| D5   | Integration test + APK build | ⏳ Pending |
-| D6   | Report + polish | ⏳ Pending |
-| D7   | Submit | ⏳ Pending |
+| D4   | Bug fixes + KycVerify + CustomerDetail + Compile check | ✅ Done |
+| D5   | Deploy Rules/Indexes + Docs freeze + Integration | ⏳ Pending |
+| D6   | APK release + Device test + Report | ⏳ Pending |
+| D7   | Proofread & Submit | ⏳ Pending |

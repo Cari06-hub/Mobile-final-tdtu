@@ -46,7 +46,7 @@ public class KycResultFragment extends Fragment {
         binding.tvMessage.setText(message);
 
         binding.btnDone.setOnClickListener(v ->
-                Navigation.findNavController(view).popBackStack(R.id.nav_root, false));
+                Navigation.findNavController(view).popBackStack(R.id.nav_kyc, true));
     }
 
     @Override

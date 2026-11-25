@@ -138,7 +138,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đổi PIN giao dịch"
-            style="@style/Widget.Material3.Button.OutlinedButton" />
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartKyc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xác thực eKYC (CCCD &amp; Khuôn mặt)"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTestFaceVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xác thực khuôn mặt (eKYC Verify)"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_marginBottom="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đăng xuất"
+            android:textColor="@color/error" />
 
     </LinearLayout>
 </ScrollView>

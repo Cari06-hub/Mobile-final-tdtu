@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,7 +18,9 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Source;
 import com.tdtu.mobilebanking.R;
+import com.tdtu.mobilebanking.common.contract.KycVerifier;
 import com.tdtu.mobilebanking.databinding.FragmentCustomerProfileBinding;
+import com.tdtu.mobilebanking.kyc.RealKycVerifier;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +59,33 @@ public class CustomerProfileFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_profile_to_changePassword));
         binding.btnChangePin.setOnClickListener(v ->
                 Navigation.findNavController(view).navigate(R.id.action_profile_to_changePin));
+        binding.btnStartKyc.setOnClickListener(v ->
+                Navigation.findNavController(view).navigate(R.id.nav_kyc));
+        binding.btnTestFaceVerify.setOnClickListener(v ->
+                new RealKycVerifier().verify(this, new KycVerifier.Callback<Boolean>() {
+                    @Override
+                    public void onResult(Boolean result) {
+                        if (!isAdded()) return;
+                        Toast.makeText(requireContext(),
+                                Boolean.TRUE.equals(result)
+                                        ? "eKYC khuôn mặt: HỢP LỆ"
+                                        : "eKYC khuôn mặt: THẤT BẠI",
+                                Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(String errorCode) {
+                        if (!isAdded()) return;
+                        Toast.makeText(requireContext(), "Lỗi eKYC: " + errorCode, Toast.LENGTH_LONG).show();
+                    }
+                }));
+        binding.btnLogout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            NavOptions opts = new NavOptions.Builder()
+                    .setPopUpTo(R.id.nav_root, true)
+                    .build();
+            Navigation.findNavController(v).navigate(R.id.nav_auth, null, opts);
+        });
     }
 
     private void loadProfile() {

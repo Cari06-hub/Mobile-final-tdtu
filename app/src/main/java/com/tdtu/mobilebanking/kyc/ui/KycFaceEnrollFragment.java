@@ -23,6 +23,7 @@ import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,8 +35,9 @@ import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceDetection;
 import com.google.mlkit.vision.face.FaceDetector;
 import com.google.mlkit.vision.face.FaceDetectorOptions;
-import com.google.mlkit.vision.face.FaceLandmark;
+import com.tdtu.mobilebanking.R;
 import com.tdtu.mobilebanking.databinding.FragmentKycFaceEnrollBinding;
+import com.tdtu.mobilebanking.kyc.FaceEmbeddingHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -190,7 +192,7 @@ public class KycFaceEnrollFragment extends Fragment {
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults output) {
                         Bitmap bmp = BitmapFactory.decodeFile(outputFile.getAbsolutePath());
                         String base64 = compressToBase64(bmp);
-                        List<Float> embedding = buildEmbedding(face);
+                        List<Float> embedding = FaceEmbeddingHelper.buildEmbedding(face);
                         saveToFirestore(base64, embedding);
                     }
 
@@ -218,38 +220,6 @@ public class KycFaceEnrollFragment extends Fragment {
         return Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
     }
 
-    /**
-     * Build a 128-dim pseudo-embedding from ML Kit face landmarks.
-     * Coordinates are normalised to [0,1] relative to image dimensions.
-     * Remaining dims are padded with 0.
-     */
-    private List<Float> buildEmbedding(Face face) {
-        List<Float> emb = new ArrayList<>();
-        int[] landmarkTypes = {
-                FaceLandmark.LEFT_EYE, FaceLandmark.RIGHT_EYE,
-                FaceLandmark.NOSE_BASE, FaceLandmark.MOUTH_LEFT,
-                FaceLandmark.MOUTH_RIGHT, FaceLandmark.LEFT_EAR,
-                FaceLandmark.RIGHT_EAR, FaceLandmark.LEFT_CHEEK,
-                FaceLandmark.RIGHT_CHEEK
-        };
-        for (int type : landmarkTypes) {
-            FaceLandmark lm = face.getLandmark(type);
-            if (lm != null) {
-                emb.add(lm.getPosition().x / 1000f);
-                emb.add(lm.getPosition().y / 1000f);
-            } else {
-                emb.add(0f); emb.add(0f);
-            }
-        }
-        // Add head Euler angles
-        emb.add(face.getHeadEulerAngleX() / 180f);
-        emb.add(face.getHeadEulerAngleY() / 180f);
-        emb.add(face.getHeadEulerAngleZ() / 180f);
-        // Pad to 128 dims
-        while (emb.size() < 128) emb.add(0f);
-        return emb.subList(0, 128);
-    }
-
     private void saveToFirestore(String photoBase64, List<Float> embedding) {
         String uid = FirebaseAuth.getInstance().getUid();
         if (uid == null) return;
@@ -262,21 +232,24 @@ public class KycFaceEnrollFragment extends Fragment {
         kycData.put("photoBase64", photoBase64);
         kycData.put("enrolledAt", FieldValue.serverTimestamp());
         kycData.put("enrolledBy", uid);
-        kycData.put("modelName", "mlkit-landmark-v1");
-        kycData.put("threshold", 0.75);
+        kycData.put("modelName", FaceEmbeddingHelper.MODEL_NAME);
+        kycData.put("threshold", FaceEmbeddingHelper.DEFAULT_THRESHOLD);
 
         batch.set(db.collection("kyc").document(uid), kycData);
         batch.update(db.collection("users").document(uid), "kycStatus", "VERIFIED");
 
         batch.commit()
                 .addOnSuccessListener(u -> {
-                    if (!isAdded()) return;
+                    if (!isAdded() || binding == null) return;
                     binding.progressBar.setVisibility(View.GONE);
-                    Toast.makeText(requireContext(), "Đăng ký khuôn mặt thành công!", Toast.LENGTH_SHORT).show();
-                    requireActivity().onBackPressed();
+                    Bundle args = new Bundle();
+                    args.putBoolean("success", true);
+                    args.putString("message", "Xác thực eKYC (CCCD & Khuôn mặt) thành công!");
+                    Navigation.findNavController(requireView())
+                            .navigate(R.id.action_face_enroll_to_result, args);
                 })
                 .addOnFailureListener(e -> {
-                    if (!isAdded()) return;
+                    if (!isAdded() || binding == null) return;
                     capturing = false;
                     stableFrameCount = 0;
                     binding.progressBar.setVisibility(View.GONE);
@@ -288,6 +261,7 @@ public class KycFaceEnrollFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (faceDetector != null) faceDetector.close();
         if (cameraExecutor != null) cameraExecutor.shutdown();
         if (cameraProvider != null) cameraProvider.unbindAll();
         binding = null;
