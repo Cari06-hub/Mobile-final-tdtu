@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    C1 - Design system (Dev C). Bổ sung cho colors.xml của A, KHÔNG định nghĩa lại tên đã có
+    (primary, error, warning, text_secondary, divider, ...), nếu trùng tên sẽ lỗi build.
+    Các màu brand_* trỏ về bảng màu của A để toàn app cùng một tông.
+-->
+<resources>
+    <color name="brand_primary">@color/primary</color>
+    <color name="brand_primary_dark">@color/primary_dark</color>
+    <color name="brand_primary_container">@color/primary_light</color>
+    <color name="brand_accent">@color/accent</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="bg_app">@color/background</color>
+    <color name="text_primary">@color/on_surface</color>
+    <color name="success">#2E7D32</color>
+    <color name="row_done">#9AA1AD</color>
+    <color name="row_next_bg">#FFF4E0</color>
+
+    <!-- Code của A (KycResultFragment, fragment_customer_profile, fragment_profile_request_detail)
+         dùng 4 màu md_theme_* nhưng chưa ai định nghĩa, nên app không build được.
+         Khai báo ở đây, trỏ về bảng màu chung. -->
+    <color name="md_theme_primary">@color/primary</color>
+    <color name="md_theme_error">@color/error</color>
+    <color name="md_theme_primaryContainer">@color/primary_light</color>
+    <color name="md_theme_onPrimaryContainer">@color/primary_dark</color>
+</resources>

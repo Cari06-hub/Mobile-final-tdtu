@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title">Trang chủ</string>
+    <string name="home_greeting">Xin chào, %1$s</string>
+    <string name="home_greeting_default">Xin chào!</string>
+    <string name="home_subtitle">Bạn muốn làm gì hôm nay?</string>
+
+    <string name="tile_accounts">Tài khoản</string>
+    <string name="tile_transfer">Chuyển tiền</string>
+    <string name="tile_interbank">Liên ngân hàng</string>
+    <string name="tile_history">Lịch sử</string>
+    <string name="tile_saving">Tiết kiệm</string>
+    <string name="tile_rates">Lãi suất</string>
+    <string name="tile_mortgage">Khoản vay</string>
+    <string name="tile_bills">Hóa đơn</string>
+    <string name="tile_phone">Nạp ĐT</string>
+    <string name="tile_booking">Vé &amp; đặt phòng</string>
+    <string name="tile_branches">Chi nhánh</string>
+    <string name="tile_chatbot">Trợ lý AI</string>
+    <string name="tile_profile">Hồ sơ</string>
+
+    <string name="seed_button">Nạp dữ liệu mẫu (chỉ bản debug)</string>
+    <string name="seed_confirm">Ghi dữ liệu mẫu (ngân hàng, hóa đơn, chi nhánh, lãi suất…) lên Firestore? Chạy lại nhiều lần vẫn an toàn vì dùng ID cố định.</string>
+    <string name="seed_done">Đã nạp %1$d bản ghi mẫu</string>
+</resources>

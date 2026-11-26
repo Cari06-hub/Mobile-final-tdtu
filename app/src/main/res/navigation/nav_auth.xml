@@ -18,7 +18,7 @@
             app:destination="@id/forgotPasswordFragment" />
         <action
             android:id="@+id/action_login_to_home"
-            app:destination="@id/nav_account"
+            app:destination="@id/homeFragment"
             app:popUpTo="@id/nav_auth"
             app:popUpToInclusive="true" />
         <action

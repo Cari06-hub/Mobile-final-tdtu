@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/view_screen_header" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MB.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_l">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/saving_principal"
+                    android:textAppearance="@style/TextAppearance.MB.Label" />
+
+                <TextView
+                    android:id="@+id/principal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_s"
+                    android:textAppearance="@style/TextAppearance.MB.Amount" />
+
+                <include android:id="@+id/rowProduct" layout="@layout/view_info_row" />
+                <include android:id="@+id/rowRate" layout="@layout/view_info_row" />
+                <include android:id="@+id/rowOpened" layout="@layout/view_info_row" />
+                <include android:id="@+id/rowMaturity" layout="@layout/view_info_row" />
+                <include android:id="@+id/rowMonthly" layout="@layout/view_info_row" />
+                <include android:id="@+id/rowAccrued" layout="@layout/view_info_row" />
+                <include android:id="@+id/rowTotal" layout="@layout/view_info_row" />
+                <include android:id="@+id/rowReceive" layout="@layout/view_info_row" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_l"
+            android:text="@string/saving_schedule_title"
+            android:textAppearance="@style/TextAppearance.MB.Title" />
+
+        <TextView
+            android:id="@+id/flexNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/saving_flex_note"
+            android:textAppearance="@style/TextAppearance.MB.Label"
+            android:visibility="gone" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MB.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_s">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/tableHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/brand_primary_container"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/space_s" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/table"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

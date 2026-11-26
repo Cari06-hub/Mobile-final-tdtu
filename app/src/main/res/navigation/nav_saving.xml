@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C2 - Graph tiết kiệm (Dev C). Được include trong nav_root.xml. -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_saving"
+    app:startDestination="@id/savingListFragment">
+
+    <fragment
+        android:id="@+id/savingListFragment"
+        android:name="com.tdtu.mobilebanking.saving.SavingListFragment"
+        android:label="@string/saving_list_title"
+        tools:layout="@layout/fragment_account_list">
+        <deepLink app:uri="bankapp://navigate/saving" />
+        <action
+            android:id="@+id/action_savingList_to_detail"
+            app:destination="@id/savingDetailFragment" />
+        <action
+            android:id="@+id/action_savingList_to_rates"
+            app:destination="@id/rateListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/savingDetailFragment"
+        android:name="com.tdtu.mobilebanking.saving.SavingDetailFragment"
+        android:label="@string/saving_detail_title"
+        tools:layout="@layout/fragment_saving_detail">
+        <argument
+            android:name="accountId"
+            app:argType="string" />
+    </fragment>
+
+    <!-- Khách xem lãi suất và mở sổ -->
+    <fragment
+        android:id="@+id/rateListFragment"
+        android:name="com.tdtu.mobilebanking.saving.RateListFragment"
+        android:label="@string/saving_rates_title"
+        tools:layout="@layout/fragment_rate_list">
+        <deepLink app:uri="bankapp://navigate/saving/rates" />
+    </fragment>
+
+    <!-- Màn officer chỉnh lãi suất nằm trong nav_officer.xml của A
+         (officer/ui/RateManagementFragment, kế thừa saving.OfficerRateFragment). -->
+</navigation>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chuỗi dùng chung (Dev C). app_name nằm trong strings.xml của A. -->
+<resources>
+    <string name="common_loading">Đang tải…</string>
+    <string name="common_back">← Quay lại</string>
+    <string name="common_cancel">Hủy</string>
+    <string name="common_save">Lưu</string>
+    <string name="common_continue">Tiếp tục</string>
+    <string name="common_ok">Đồng ý</string>
+    <string name="common_not_signed_in">Bạn chưa đăng nhập</string>
+    <string name="common_feature_not_ready">Chức năng này đang được nhóm hoàn thiện</string>
+    <string name="common_tx_not_ready">Màn xác nhận giao dịch (Dev B) chưa được ghép vào app</string>
+    <string name="common_no_checking">Bạn chưa có tài khoản thanh toán đang hoạt động</string>
+    <string name="common_pick_source">Chọn tài khoản nguồn</string>
+    <string name="common_error_format">Lỗi: %1$s</string>
+</resources>
