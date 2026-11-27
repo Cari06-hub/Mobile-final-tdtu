@@ -18,10 +18,6 @@
     <!-- KYC graph — owned by Dev A -->
     <include app:graph="@navigation/nav_kyc" />
 
-<<<<<<< HEAD
-    <!-- Account graph — owned by Dev A (profile) & Dev B (transactions) -->
-    <include app:graph="@navigation/nav_account" />
-=======
     <!-- Trang chủ khách hàng — Dev C. Login (nav_auth) đưa khách về đây. -->
     <fragment
         android:id="@+id/homeFragment"
@@ -31,7 +27,7 @@
         <deepLink app:uri="bankapp://navigate/home" />
     </fragment>
 
-    <!-- Account graph — hiện chứa Hồ sơ khách (A5); Dev B bổ sung màn tài khoản -->
+    <!-- Account graph — owned by Dev A (profile) & Dev B (transactions) -->
     <include app:graph="@navigation/nav_account" />
 
     <!-- Saving + Mortgage — Dev C -->
@@ -40,7 +36,6 @@
 
     <!-- Transaction graph (ConfirmTransactionFragment) — Dev B, id bắt buộc nav_transaction -->
     <!-- <include app:graph="@navigation/nav_transaction" /> -->
->>>>>>> origin/Hương
 
     <!-- Payment graph — owned by Dev B -->
     <!-- <include app:graph="@navigation/nav_payment" /> -->

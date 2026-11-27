@@ -138,8 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đổi PIN giao dịch"
-<<<<<<< HEAD
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.App.Button.Outlined"
             android:layout_marginBottom="8dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -147,7 +146,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Xác thực eKYC (CCCD &amp; Khuôn mặt)"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.App.Button.Outlined"
             android:layout_marginBottom="8dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -155,7 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Xác thực khuôn mặt (eKYC Verify)"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.App.Button.Outlined"
             android:layout_marginBottom="16dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -165,9 +164,6 @@
             android:layout_height="wrap_content"
             android:text="Đăng xuất"
             android:textColor="@color/error" />
-=======
-            style="@style/Widget.App.Button.Outlined" />
->>>>>>> origin/Hương
 
     </LinearLayout>
 </ScrollView>

@@ -126,5 +126,49 @@ service cloud.firestore {
       allow read: if signedIn();
       allow write: if false;
     }
+
+    // ---------- Seed / Demo data (C7) ----------
+    // banks, externalAccounts, bills, flights, movies, hotels, products, branches
+    // Khách đọc để hiển thị UI; chỉ officer được ghi (seed từ HomeFragment debug build)
+
+    match /banks/{code} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    match /externalAccounts/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    match /bills/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    match /flights/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    match /movies/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    match /hotels/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    match /products/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    match /branches/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
   }
 }

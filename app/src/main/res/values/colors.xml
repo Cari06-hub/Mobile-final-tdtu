@@ -13,11 +13,8 @@
     <color name="text_secondary">#6B7280</color>
     <color name="divider">#E5E7EB</color>
 
-    <!-- Material3 theme aliases (used by KycResultFragment, CustomerDetailFragment, CustomerProfileFragment) -->
-    <color name="md_theme_primary">#1A56DB</color>
-    <color name="md_theme_primaryContainer">#E8F0FE</color>
-    <color name="md_theme_onPrimaryContainer">#1239A6</color>
-    <color name="md_theme_error">#D32F2F</color>
+    <!-- md_theme_primary/error/primaryContainer/onPrimaryContainer định nghĩa trong colors_design.xml (C1) -->
+    <!-- md_theme_* bổ sung chưa có trong colors_design.xml -->
     <color name="md_theme_on_primary">#FFFFFF</color>
     <color name="md_theme_surface">#FFFFFF</color>
     <color name="md_theme_background">#F5F7FA</color>
