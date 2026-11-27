@@ -1,4 +1,4 @@
-# Dev A — Todolist (Cập nhật: 26/11/2026)
+# Dev A — Todolist (Cập nhật: 27/11/2026)
 
 ## ✅ Đã hoàn thành
 
@@ -29,6 +29,7 @@
 - [x] Firestore database created
 - [x] Security Rules deployed
 - [x] Seed script run — 4 Auth users + Firestore data
+- [x] Composite indexes (4/5 đã tạo thủ công, đang Building)
 
 ### D3 — Customer Profile, eKYC, Officer Profile Requests
 - [x] A5: `CustomerProfileFragment` — view/edit profile, submit change requests
@@ -66,30 +67,47 @@
 - [x] **Merge `origin/Sang` (`06ae336`)** — untrack `app/build/` khỏi Git
 - [x] **Git commit D4 + push lên nhánh `Anh`**
 
+### Merge Dev C (Hương) — 27/11/2026
+- [x] Merge `origin/Hương` → `Anh` (commit `4be7b4a`): saving, mortgage, home, seed data, common utils, design system
+- [x] **fix: gỡ 2 conflict markers** trong `nav_root.xml` và `fragment_customer_profile.xml`
+- [x] **fix: dedup `md_theme_*` colors** — xóa duplicate khỏi `colors.xml`, giữ định nghĩa trong `colors_design.xml`
+- [x] **fix: sửa style `Widget.Material3.Button.OutlinedButton` → `Widget.App.Button.Outlined`** trong `fragment_customer_profile.xml`
+- [x] **fix: thêm rules cho 8 collection SeedData** vào `firestore.rules` (`banks`, `externalAccounts`, `bills`, `flights`, `movies`, `hotels`, `products`, `branches`)
+- [x] **Compile test: BUILD SUCCESSFUL** (18s)
+- [x] **Push commit `fdefbb8` lên `origin/Anh`**
+
 ---
 
 ## 🔧 Cần làm tiếp
 
-### Firebase Console
-- [ ] **Deploy Security Rules mới** lên Firebase Console (`firestore.rules` đã cập nhật ở D4)
-- [ ] **Deploy composite indexes** (`firestore.indexes.json`) trên Firebase Console
+### Firebase Console (cần làm thủ công trên trình duyệt)
+- [ ] **Deploy Security Rules mới** lên Firebase Console — `firestore.rules` đã cập nhật (D4 + SeedData rules)
+- [ ] **Tạo index #5** trên Firestore Console: collection `profileRequests`, fields `uid↑, status↑, createdAt↓`
+  - Chọn "Create structured index" → Next → Collection: `profileRequests`
+  - Field 1: `uid` Ascending
+  - Field 2: `status` Ascending
+  - Field 3: `createdAt` Descending
 
-### D5–D6 — Hoàn thiện
-- [ ] Update `docs/diagrams.md` và `docs/firebase-schema.md` nếu có field mới (`pinHash`, `mustChangePassword`, v.v.)
-- [ ] Build APK release — `./gradlew.bat assembleRelease`
-- [ ] Test trên thiết bị thật — officer login, customer login, eKYC, sửa/mở/khóa TK
-- [ ] Viết phần báo cáo: Ch.3 (deployment), Ch.4 (UI screenshots)
+### D5 — Hoàn thiện
+- [ ] **Build APK release** — `.\gradlew.bat assembleRelease --no-daemon` với JAVA_HOME set
+- [ ] **Test trên thiết bị thật** — officer login, customer login, eKYC, sửa/mở/khóa TK, tiết kiệm, khoản vay
+- [ ] **Chạy SeedData** trên máy thật (nút debug trên HomeFragment sau khi login officer) để có data demo
+- [ ] Update `docs/firebase-schema.md` — thêm field `pinHash`, `mustChangePassword` vào `users/` schema
+- [ ] Update `docs/diagrams.md` nếu có thay đổi class/ERD sau D4
 
 ### Blocked — Chờ Dev B (Sang)
 - [ ] Merge code Dev B vào nhánh Anh (Sang chưa push code mới!)
 - [ ] `ConfirmTransactionFragment` integration với `RealKycVerifier`
-- [ ] Nối `CustomerHomeFragment` + `nav_account` / `nav_payment`
+- [ ] `nav_transaction` include vào `nav_root.xml` (xem comment trong file)
+- [ ] Nối `AccountList`, lịch sử giao dịch
 - [ ] Test AB-R Rules giao dịch & end-to-end chuyển tiền
-- [ ] Nhắc Sang push code: `git push origin Sang`
+- [ ] **Nhắc Sang push code: `git push origin Sang`**
 
-### Blocked — Chờ Dev C (Hương)
-- [ ] `RateManagementFragment` (Dev C owns) — chưa có code
-- [ ] `nav_utility`, `nav_map`, `nav_chatbot` — chưa có code
+### Blocked — Chờ Dev C (Hương) — phần còn lại
+- [ ] `nav_utility` — C4 hóa đơn điện/nước, nạp ĐT, checkout vé/khách sạn
+- [ ] `nav_map` — C5 bản đồ chi nhánh (Google Maps)
+- [ ] `nav_chatbot` — C6 AI Chatbot Gemini
+- [ ] C8 Liên ngân hàng
 
 ---
 
@@ -101,6 +119,17 @@
 | D2   | Officer Module & Rules | ✅ Done |
 | D3   | Profile, eKYC, Diagrams | ✅ Done |
 | D4   | Bug fixes + KycVerify + CustomerDetail + Compile check | ✅ Done |
-| D5   | Deploy Rules/Indexes + Docs freeze + Integration | ⏳ Pending |
+| Merge C | Hương: Home, Saving, Mortgage, Seed, Common, Design system | ✅ Done (27/11) |
+| D5   | Deploy Rules/Indexes + Build APK + Device test + Docs freeze | ⏳ Đang làm |
 | D6   | APK release + Device test + Report | ⏳ Pending |
 | D7   | Proofread & Submit | ⏳ Pending |
+
+---
+
+## Demo accounts
+
+| Role | Email | Password |
+|------|-------|----------|
+| Officer | officer@bank.tdtu.vn | Officer2024! |
+| Customer 1 | customer1@test.com | Customer2024! |
+| Customer 3 | customer3@test.com | Customer2024! |
