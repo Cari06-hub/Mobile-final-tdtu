@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Graph gốc (Dev C sở hữu theo kế hoạch, A tạo khung). Mỗi module có graph riêng, ở đây chỉ include.
+    Điều hướng giữa các module đi qua common/DeepLinkRouter (URI bankapp://navigate/<route>).
+-->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_root"
     app:startDestination="@id/nav_auth">
 
@@ -13,8 +18,29 @@
     <!-- KYC graph — owned by Dev A -->
     <include app:graph="@navigation/nav_kyc" />
 
+<<<<<<< HEAD
     <!-- Account graph — owned by Dev A (profile) & Dev B (transactions) -->
     <include app:graph="@navigation/nav_account" />
+=======
+    <!-- Trang chủ khách hàng — Dev C. Login (nav_auth) đưa khách về đây. -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.tdtu.mobilebanking.common.home.HomeFragment"
+        android:label="@string/home_title"
+        tools:layout="@layout/fragment_home">
+        <deepLink app:uri="bankapp://navigate/home" />
+    </fragment>
+
+    <!-- Account graph — hiện chứa Hồ sơ khách (A5); Dev B bổ sung màn tài khoản -->
+    <include app:graph="@navigation/nav_account" />
+
+    <!-- Saving + Mortgage — Dev C -->
+    <include app:graph="@navigation/nav_saving" />
+    <include app:graph="@navigation/nav_mortgage" />
+
+    <!-- Transaction graph (ConfirmTransactionFragment) — Dev B, id bắt buộc nav_transaction -->
+    <!-- <include app:graph="@navigation/nav_transaction" /> -->
+>>>>>>> origin/Hương
 
     <!-- Payment graph — owned by Dev B -->
     <!-- <include app:graph="@navigation/nav_payment" /> -->

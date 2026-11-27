@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C3 - Graph khoản vay (Dev C). Được include trong nav_root.xml. -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_mortgage"
+    app:startDestination="@id/mortgageListFragment">
+
+    <fragment
+        android:id="@+id/mortgageListFragment"
+        android:name="com.tdtu.mobilebanking.mortgage.MortgageListFragment"
+        android:label="@string/mortgage_list_title"
+        tools:layout="@layout/fragment_account_list">
+        <deepLink app:uri="bankapp://navigate/mortgage" />
+        <action
+            android:id="@+id/action_mortgageList_to_detail"
+            app:destination="@id/mortgageDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mortgageDetailFragment"
+        android:name="com.tdtu.mobilebanking.mortgage.MortgageDetailFragment"
+        android:label="@string/mortgage_detail_title"
+        tools:layout="@layout/fragment_mortgage_detail">
+        <argument
+            android:name="accountId"
+            app:argType="string" />
+    </fragment>
+</navigation>

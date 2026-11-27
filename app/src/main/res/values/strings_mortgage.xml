@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mortgage_list_title">Khoản vay</string>
+    <string name="mortgage_detail_title">Chi tiết khoản vay</string>
+    <string name="mortgage_total_label">Tổng dư nợ hiện tại</string>
+    <string name="mortgage_empty">Bạn chưa có khoản vay nào.</string>
+    <string name="mortgage_item_title">Khoản vay •••%1$s</string>
+    <string name="mortgage_item_subtitle">%1$s · %2$d kỳ · %3$s/năm</string>
+    <string name="mortgage_item_next">Kỳ tới %1$s: %2$s</string>
+    <string name="mortgage_item_done">Đã tất toán</string>
+
+    <string name="mortgage_monthly">Hàng tháng</string>
+    <string name="mortgage_biweekly">2 tuần/lần</string>
+
+    <string name="mortgage_outstanding">Dư nợ hiện tại</string>
+    <string name="mortgage_principal">Số tiền vay</string>
+    <string name="mortgage_rate">Lãi suất</string>
+    <string name="mortgage_frequency">Hình thức trả</string>
+    <string name="mortgage_installment">Số tiền mỗi kỳ</string>
+    <string name="mortgage_progress">Đã trả</string>
+    <string name="mortgage_progress_value">%1$d / %2$d kỳ</string>
+    <string name="mortgage_next">Kỳ tiếp theo</string>
+    <string name="mortgage_next_value">%1$s — %2$s</string>
+    <string name="mortgage_total_interest">Tổng lãi cả khoản vay</string>
+    <string name="mortgage_compare">Nếu trả %1$s: %2$s mỗi kỳ (%3$d kỳ)</string>
+    <string name="mortgage_pay_button">Thanh toán kỳ %1$d (%2$s)</string>
+    <string name="mortgage_paid_off">Khoản vay đã được tất toán</string>
+
+    <string name="mortgage_col_index">Kỳ</string>
+    <string name="mortgage_col_date">Ngày</string>
+    <string name="mortgage_col_principal">Gốc</string>
+    <string name="mortgage_col_interest">Lãi</string>
+    <string name="mortgage_col_remaining">Dư nợ</string>
+</resources>

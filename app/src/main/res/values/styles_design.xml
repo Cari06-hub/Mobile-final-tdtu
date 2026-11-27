@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    C1 - Design system (Dev C). Style bổ sung, dùng cùng theme Theme.MobileBankingApp của A
+    (MaterialComponents). Nút và ô nhập dùng lại style của A: Widget.App.Button.Primary,
+    Widget.App.Button.Outlined, Widget.App.TextInputLayout.
+-->
+<resources>
+
+    <!-- Thẻ bo góc 16dp, không padding sẵn (layout bên trong tự padding) -->
+    <style name="Widget.MB.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="cardElevation">1dp</item>
+    </style>
+
+    <style name="TextAppearance.MB.Amount" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary_dark</item>
+    </style>
+
+    <style name="TextAppearance.MB.Title" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/on_surface</item>
+    </style>
+
+    <style name="TextAppearance.MB.Label" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="TextAppearance.MB.Value" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/on_surface</item>
+    </style>
+</resources>

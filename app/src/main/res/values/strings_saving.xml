@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="saving_list_title">Tiết kiệm</string>
+    <string name="saving_detail_title">Chi tiết sổ tiết kiệm</string>
+    <string name="saving_rates_title">Bảng lãi suất</string>
+    <string name="saving_officer_rates_title">Quản lý lãi suất</string>
+
+    <string name="saving_total_label">Tổng tiền gửi tiết kiệm</string>
+    <string name="saving_empty">Bạn chưa có sổ tiết kiệm nào.\nXem bảng lãi suất để mở sổ mới.</string>
+    <string name="saving_open_new">Xem lãi suất &amp; mở sổ mới</string>
+    <string name="saving_item_title">Sổ tiết kiệm •••%1$s</string>
+    <string name="saving_item_profit">Lãi mỗi tháng: %1$s</string>
+
+    <string name="saving_principal">Tiền gốc</string>
+    <string name="saving_product">Sản phẩm</string>
+    <string name="saving_rate">Lãi suất</string>
+    <string name="saving_opened">Ngày mở</string>
+    <string name="saving_maturity">Ngày đáo hạn</string>
+    <string name="saving_monthly_profit">Lãi mỗi tháng</string>
+    <string name="saving_accrued">Lãi tạm tính đến hôm nay</string>
+    <string name="saving_total_profit">Tổng lãi khi đáo hạn</string>
+    <string name="saving_receive">Nhận khi đáo hạn</string>
+    <string name="saving_schedule_title">Lãi theo từng tháng</string>
+    <string name="saving_flex_note">Sổ không kỳ hạn: bảng dưới là lãi dự kiến 12 tháng.</string>
+    <string name="saving_col_month">Tháng</string>
+    <string name="saving_col_date">Ngày</string>
+    <string name="saving_col_profit">Lãi</string>
+    <string name="saving_col_cumulative">Lũy kế</string>
+    <string name="saving_rate_per_year">%1$s/năm</string>
+
+    <string name="saving_open_title">Mở sổ: %1$s</string>
+    <string name="saving_amount_hint">Số tiền gửi (VND)</string>
+    <string name="saving_min_amount">Số tiền tối thiểu là %1$s</string>
+    <string name="saving_preview">Lãi mỗi tháng: %1$s\nTổng lãi cả kỳ: %2$s\nNhận khi đáo hạn: %3$s</string>
+
+    <string name="saving_inactive">Ngừng áp dụng</string>
+    <string name="saving_add_product">Thêm sản phẩm</string>
+    <string name="saving_edit_product">Sửa lãi suất</string>
+    <string name="saving_name_hint">Tên sản phẩm</string>
+    <string name="saving_term_hint">Kỳ hạn (tháng, 0 = không kỳ hạn)</string>
+    <string name="saving_rate_hint">Lãi suất (%/năm)</string>
+    <string name="saving_active_label">Đang áp dụng</string>
+    <string name="saving_rate_note">Lãi suất mới chỉ áp dụng cho sổ mở sau thời điểm thay đổi. Sổ đang có giữ nguyên lãi suất đã chốt.</string>
+    <string name="saving_invalid_rate">Lãi suất phải từ 0 đến 20%</string>
+    <string name="saving_invalid_term">Kỳ hạn phải từ 0 đến 60 tháng</string>
+    <string name="saving_invalid_name">Nhập tên sản phẩm</string>
+    <string name="saving_saved">Đã lưu lãi suất</string>
+</resources>
